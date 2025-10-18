@@ -1,0 +1,97 @@
+openapi: 3.0.3
+info:
+  title: 會員註冊 API
+  version: 1.0.0
+  description: 會員註冊與 Email 驗證後端 API 合約
+servers:
+  - url: http://localhost:5000/api
+paths:
+  /register:
+    post:
+      summary: 註冊新會員
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '200':
+          description: 註冊成功
+        '400':
+          description: 輸入資料有誤
+        '409':
+          description: 身分證字號已註冊
+  /verify-email:
+    post:
+      summary: 驗證 Email 驗證碼
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyEmailRequest'
+      responses:
+        '200':
+          description: 驗證成功
+        '400':
+          description: 驗證碼錯誤或過期
+        '423':
+          description: 驗證功能暫時鎖定
+  /resend-verification:
+    post:
+      summary: 重發 Email 驗證碼
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendVerificationRequest'
+      responses:
+        '200':
+          description: 驗證碼已重發
+        '429':
+          description: 重發次數過多，請稍後再試
+components:
+  schemas:
+    RegisterRequest:
+      type: object
+      required:
+        - idNumber
+        - name
+        - password
+        - email
+      properties:
+        idNumber:
+          type: string
+          description: 身分證字號
+        name:
+          type: string
+          description: 姓名
+        password:
+          type: string
+          description: 密碼（8-20碼，含英文大小寫與數字）
+        email:
+          type: string
+          format: email
+          description: Email
+    VerifyEmailRequest:
+      type: object
+      required:
+        - idNumber
+        - code
+      properties:
+        idNumber:
+          type: string
+          description: 身分證字號
+        code:
+          type: string
+          description: 6 位數驗證碼
+    ResendVerificationRequest:
+      type: object
+      required:
+        - idNumber
+      properties:
+        idNumber:
+          type: string
+          description: 身分證字號
