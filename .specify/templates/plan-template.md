@@ -3,6 +3,8 @@
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
 
+**⚠️ LANGUAGE REQUIREMENT**: This plan MUST be written in Traditional Chinese (zh-TW) per constitution requirements.
+
 **Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
@@ -31,7 +33,44 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**Code Quality**:
+- [ ] Single responsibility maintained for all components
+- [ ] Cyclomatic complexity ≤10 per function
+- [ ] No code duplication without justification
+- [ ] Linting and formatting standards configured
+
+**Testing Standards**:
+- [ ] TDD approach planned (tests before implementation)
+- [ ] 80% minimum code coverage target set
+- [ ] Test strategy covers unit, contract, and integration tests
+- [ ] All user stories have corresponding acceptance tests
+- [ ] Test execution time budgets defined (<100ms unit, <5s integration)
+
+**User Experience Consistency**:
+- [ ] Primary tasks completable in ≤3 steps
+- [ ] Error messages are user-friendly and actionable
+- [ ] Loading states defined for operations >300ms
+- [ ] Mobile-first responsive design planned
+- [ ] Accessibility standards (WCAG 2.1 AA) considered
+
+**Performance Requirements**:
+- [ ] API response times: <200ms (p95) CRUD, <500ms (p95) complex queries
+- [ ] Frontend: <2s initial load, <3s TTI on 3G
+- [ ] Resource limits: <512MB memory, <70% CPU per instance
+- [ ] Performance monitoring and alerting planned
+- [ ] Caching strategy defined for frequently accessed data
+
+**Quality Gates Defined**:
+- [ ] All tests must pass before merge
+- [ ] Code coverage minimums enforced
+- [ ] Code review required
+- [ ] Performance benchmarks defined (if applicable)
+
+**Documentation Language**:
+- [ ] All specifications written in Traditional Chinese (zh-TW)
+- [ ] All plans written in Traditional Chinese (zh-TW)
+- [ ] User-facing documentation in Traditional Chinese (zh-TW)
+- [ ] Error messages and UI text in Traditional Chinese (zh-TW)
 
 ## Project Structure
 
